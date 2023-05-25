@@ -58,6 +58,7 @@ getrandom.workspace = true
 online = ["reqwest", "ethers-etherscan", "url", "tokio"]
 openssl = ["online", "reqwest/native-tls", "ethers-etherscan/openssl"]
 rustls = ["online", "reqwest/rustls-tls", "ethers-etherscan/rustls"]
+zksync = []
 
 [dev-dependencies]
 tempfile.workspace = true

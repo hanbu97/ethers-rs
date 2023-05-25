@@ -1,11 +1,32 @@
+use std::fmt::format;
+
 use ethers_core::types::{Chain, H160};
 
 /// The Multicall3 contract address that is deployed in [`MULTICALL_SUPPORTED_CHAIN_IDS`]:
 /// [`0xcA11bde05977b3631167028862bE2a173976CA11`](https://etherscan.io/address/0xcA11bde05977b3631167028862bE2a173976CA11)
+// #[cfg(not(feature = "zksync"))]
+// pub const MULTICALL_ADDRESS: H160 = H160([
+//     0xca, 0x11, 0xbd, 0xe0, 0x59, 0x77, 0xb3, 0x63, 0x11, 0x67, 0x02, 0x88, 0x62, 0xbe, 0x2a,
+// 0x17,     0x39, 0x76, 0xca, 0x11,
+// ]);
+
+// #[cfg(feature = "zksync")]
 pub const MULTICALL_ADDRESS: H160 = H160([
-    0xca, 0x11, 0xbd, 0xe0, 0x59, 0x77, 0xb3, 0x63, 0x11, 0x67, 0x02, 0x88, 0x62, 0xbe, 0x2a, 0x17,
-    0x39, 0x76, 0xca, 0x11,
+    0xf9, 0xcd, 0xa6, 0x24, 0xfb, 0xc7, 0xe0, 0x59, 0x35, 0x5c, 0xe9, 0x8a, 0x31, 0x69, 0x3d, 0x29,
+    0x9f, 0xac, 0xd9, 0x63,
 ]);
+
+#[test]
+fn test_zksync_address() {
+    // let t = hex::decode("cA11bde05977b3631167028862bE2a173976CA11").unwrap();
+    let t = hex::decode("F9cda624FBC7e059355ce98a31693d299FACd963").unwrap();
+    let mut out = "".to_string();
+    for i in t {
+        let s = format!("0x{:x}", i);
+        out = format!("{}, {}", out, s);
+    }
+    dbg!(out);
+}
 
 /// The chain IDs that [`MULTICALL_ADDRESS`] has been deployed to.
 ///
